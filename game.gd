@@ -4,18 +4,27 @@ extends Control
 @onready var label: Control = $LabelContainer/Label
 
 var label_visible = false
+var tween: Tween
+
+func tween_label(out: bool):
+	if tween:
+		await tween.finished
+		tween = null
+
+	tween = get_tree().create_tween().set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(label, "position:x", pic_size * int(out), 0.3)\
+			.set_ease(Tween.EASE_OUT if out else Tween.EASE_IN)
+
 
 func _on_label_container_mouse_entered() -> void:
 	print("Enter")
 	label_visible = true
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "position:x", pic_size, 0.3)
+	tween_label(true)
 
 
 func _on_label_container_mouse_exited() -> void:
 	print("Leave")
 	label_visible = false
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
-	tween.tween_property(label, "position:x", 0, 0.3)
+	tween_label(false)
 
 
