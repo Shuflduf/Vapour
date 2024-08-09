@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drh8kouv1u8pj"]
 
-[ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_xs5nb"]
+[ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
@@ -31,38 +32,9 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Control" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
-texture = ExtResource("1_xs5nb")
+size_flags_horizontal = 8
+size_flags_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect5" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect6" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect7" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect8" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
-
-[node name="TextureRect9" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_xs5nb")
+[connection signal="mouse_exited" from="MarginContainer/ScrollContainer/VBoxContainer/Control" to="MarginContainer/ScrollContainer/VBoxContainer/Control" method="_on_mouse_exited"]
