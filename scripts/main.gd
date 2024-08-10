@@ -69,7 +69,7 @@ func load_games():
 			if i == "border_colour":
 				new_object.set(i, str_to_var(node_data[i]))
 			elif i == "description:text":
-				pass
+				continue
 			else:
 				new_object.set(i, node_data[i])
 
