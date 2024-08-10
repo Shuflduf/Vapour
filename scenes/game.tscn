@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh20pin180h43"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_4nrkt"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_4nrkt"]
 [ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_jeach"]
-[ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://main_label.tres" id="3_qx0dg"]
+[ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://assets/main_label.tres" id="3_ddwdr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohv6s"]
 bg_color = Color(0.83, 0.617105, 0.1577, 0.184314)
@@ -62,7 +62,7 @@ offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Game"
-label_settings = ExtResource("3_qx0dg")
+label_settings = ExtResource("3_ddwdr")
 vertical_alignment = 1
 autowrap_mode = 3
 

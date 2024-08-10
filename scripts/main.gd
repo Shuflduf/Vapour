@@ -11,3 +11,6 @@ func _on_new_game_pressed() -> void:
 
 func add_game(new_entry: GameEntry):
 	new_entry.reparent(games)
+
+func save_games():
+	pass

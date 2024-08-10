@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://drh8kouv1u8pj"]
 
-[ext_resource type="PackedScene" uid="uid://de7kka5kj7f7m" path="res://new_game.tscn" id="1_l6jh3"]
-[ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
-[ext_resource type="Script" path="res://main.gd" id="1_vgx7c"]
-[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_k3vr8"]
+[ext_resource type="PackedScene" uid="uid://de7kka5kj7f7m" path="res://scenes/new_game.tscn" id="1_l6jh3"]
+[ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://scenes/game.tscn" id="1_nhxs7"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_vgx7c"]
+[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://assets/Poppins-Bold.ttf" id="3_k3vr8"]
 
 [node name="Main" type="HSplitContainer"]
 anchors_preset = 15
