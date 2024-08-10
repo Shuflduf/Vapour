@@ -3,6 +3,7 @@ class_name GameEntry
 extends Control
 
 signal edited
+signal hovered(colour: Color)
 
 @export_global_file("*.exe") var app_path: String
 @export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga") var app_icon: String:
@@ -57,6 +58,7 @@ func tween_label(out: bool):
 
 
 func _on_game_mouse_entered() -> void:
+	hovered.emit(border_colour)
 	tween_label(true)
 
 

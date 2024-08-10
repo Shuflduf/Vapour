@@ -1,40 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://drh8kouv1u8pj"]
+[gd_scene load_steps=7 format=3 uid="uid://drh8kouv1u8pj"]
 
 [ext_resource type="PackedScene" uid="uid://de7kka5kj7f7m" path="res://scenes/new_game.tscn" id="1_l6jh3"]
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://scenes/game.tscn" id="1_nhxs7"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vgx7c"]
 [ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://assets/Poppins-Bold.ttf" id="3_k3vr8"]
 
-[node name="Main" type="HSplitContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_405cj"]
+bg_color = Color(0, 0, 0, 0.658824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clqdd"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vgx7c")
+new_game = ExtResource("1_l6jh3")
+game_entry = ExtResource("1_nhxs7")
+
+[node name="Main" type="HSplitContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 collapsed = true
-script = ExtResource("1_vgx7c")
-new_game = ExtResource("1_l6jh3")
-game_entry = ExtResource("1_nhxs7")
 
-[node name="Buttons" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="Main"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Buttons"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="NewGame" type="Button" parent="Buttons/VBoxContainer"]
+[node name="NewGame" type="Button" parent="Main/Buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_k3vr8")
 text = "Add New Game"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
@@ -42,23 +57,48 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/MarginContainer"]
 clip_contents = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="Games" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="Games" type="VBoxContainer" parent="Main/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_constants/separation = 15
 
-[node name="Game" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
+[node name="Game" parent="Main/MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 app_path = "C:/Users/Computer/Documents/Godot/Vapour/testingexe.exe"
 app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/godot.jpg"
 border_colour = Color(1, 0, 0, 1)
 
-[connection signal="pressed" from="Buttons/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[node name="Panel" type="Panel" parent="."]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_405cj")
+
+[node name="BackroundColour" type="Panel" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = -102
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clqdd")
+
+[connection signal="pressed" from="Main/Buttons/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

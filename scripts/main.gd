@@ -1,8 +1,9 @@
-extends HSplitContainer
+extends Control
 
 @export var new_game: PackedScene
 @export var game_entry: PackedScene
 @onready var games: VBoxContainer = %Games
+@onready var backround_colour: Panel = $BackroundColour
 
 func _ready() -> void:
 	load_games()
@@ -15,9 +16,9 @@ func _on_new_game_pressed() -> void:
 
 func add_game(new_entry: GameEntry):
 	new_entry.reparent(games)
-
 	save_games()
 	connect_all_children()
+
 
 func edit_game(new_entry: GameEntry, index):
 	games.get_child(index).free()
@@ -72,12 +73,19 @@ func load_games():
 
 	call_deferred("connect_all_children")
 
+func change_backround_colour(new_colour: Color):
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(backround_colour, "modulate", new_colour, 0.3)
+
 
 func connect_all_children():
 	for i in games.get_children().size():
 
 		if !games.get_children()[i].get_signal_connection_list("tree_exited"):
 			games.get_children()[i].tree_exited.connect(save_games)
+
+		if !games.get_children()[i].get_signal_connection_list("hovered"):
+			games.get_children()[i].hovered.connect(change_backround_colour)
 
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()
