@@ -55,3 +55,9 @@ layout_mode = 2
 
 [node name="Game8" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
+
+[node name="Game9" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+layout_mode = 2
+
+[node name="Game10" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+layout_mode = 2
