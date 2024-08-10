@@ -12,11 +12,21 @@ func _on_new_game_pressed() -> void:
 	add_child(new_entry)
 	new_entry.added_game.connect(add_game)
 
+
 func add_game(new_entry: GameEntry):
 	new_entry.reparent(games)
 	save_games()
+	load_games()
+
+func edit_game(new_entry: GameEntry, index):
+	new_entry.reparent(games)
+	games.move_child(new_entry, index)
+	save_games()
+	load_games()
+	#games.get_child(index) = new_entry
 
 func save_games():
+	print("Save")
 	var save_file = FileAccess.open("user://games.json", FileAccess.WRITE)
 	for game in games.get_children():
 		if !game is GameEntry:
@@ -25,6 +35,8 @@ func save_games():
 		save_file.store_line(JSON.stringify(game_data))
 
 func load_games():
+	print("Load")
+
 	for game in games.get_children():
 		game.queue_free()
 
@@ -58,5 +70,15 @@ func load_games():
 
 		games.add_child(new_object, true)
 
-		# Now we set the remaining variables.
+	for i in games.get_children().size():
+
+		games.get_children()[i].tree_exited.connect(save_games)
+
+		games.get_children()[i].edited.connect(func():
+			var new_entry = new_game.instantiate()
+			add_child(new_entry)
+			new_entry.game.queue_free()
+			new_entry.h_box.add_child(games.get_children()[i - 1].duplicate())
+			new_entry.update_from_game()
+			new_entry.added_game.connect(add_game.bind(i)))
 

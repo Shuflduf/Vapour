@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh20pin180h43"]
+[gd_scene load_steps=6 format=3 uid="uid://bh20pin180h43"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_4nrkt"]
 [ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_jeach"]
 [ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://assets/main_label.tres" id="3_ddwdr"]
+[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://assets/Poppins-Bold.ttf" id="4_ndcrq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohv6s"]
 bg_color = Color(0.83, 0.617105, 0.1577, 0.184314)
@@ -80,37 +81,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ohv6s")
 [node name="RightClick" type="PopupMenu" parent="."]
 unique_name_in_owner = true
 position = Vector2i(30, 35)
-size = Vector2i(100, 61)
+size = Vector2i(100, 62)
 always_on_top = true
-
-[node name="Button" type="Button" parent="RightClick"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_right = 50.0
-offset_bottom = 31.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Edit"
-
-[node name="Button2" type="Button" parent="RightClick"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -31.0
-offset_right = 50.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 6
-size_flags_vertical = 4
-text = "Delete"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_ndcrq")
+item_count = 2
+item_0/text = "Edit"
+item_0/id = 0
+item_1/text = "Delete"
+item_1/id = 1
 
 [connection signal="gui_input" from="Art" to="." method="_on_game_gui_input"]
 [connection signal="mouse_entered" from="Art" to="." method="_on_game_mouse_entered"]
 [connection signal="mouse_exited" from="Art" to="." method="_on_game_mouse_exited"]
+[connection signal="index_pressed" from="RightClick" to="." method="_on_right_click_index_pressed"]
 [connection signal="mouse_exited" from="RightClick" to="." method="_on_right_click_mouse_exited"]

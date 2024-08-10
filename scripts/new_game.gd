@@ -5,8 +5,13 @@ signal added_game(game: GameEntry)
 @onready var image_file_dialog: FileDialog = %ImageFileDialog
 @onready var path_file_dialog: FileDialog = %PathFileDialog
 
+@onready var h_box: HBoxContainer = $MarginContainer/HBoxContainer
+
 @onready var game: GameEntry = %Game
 
+func update_from_game():
+	%LineEdit.text = game.app_path
+	%ColorPickerButton.color = game.border_colour
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	game.name = new_text

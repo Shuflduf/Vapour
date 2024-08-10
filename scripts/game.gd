@@ -2,6 +2,8 @@
 class_name GameEntry
 extends Control
 
+signal edited
+
 @export_global_file("*.exe") var app_path: String
 @export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga") var app_icon: String:
 	set(value):
@@ -73,6 +75,16 @@ func _on_game_gui_input(event: InputEvent) -> void:
 				right_click.show()
 
 
-
 func _on_right_click_mouse_exited() -> void:
 	right_click.hide()
+
+
+func _on_right_click_index_pressed(index: int) -> void:
+	match index:
+		0:
+			edited.emit()
+		1:
+			queue_free()
+
+
+
