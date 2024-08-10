@@ -6,7 +6,6 @@ extends HSplitContainer
 
 func _ready() -> void:
 	load_games()
-	#save_games()
 
 func _on_new_game_pressed() -> void:
 	var new_entry = new_game.instantiate()

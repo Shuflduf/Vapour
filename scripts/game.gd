@@ -23,6 +23,7 @@ extends Control
 @onready var label: Control = %Label
 @onready var icon: TextureRect = %Art
 @onready var outline: Panel = %Panel
+@onready var right_click: PopupMenu = %RightClick
 
 var tween: Tween
 
@@ -63,7 +64,15 @@ func _on_game_mouse_exited() -> void:
 
 func _on_game_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_mask == MOUSE_BUTTON_LEFT:
-			if event.pressed:
+		if event.pressed:
+			if event.button_mask == MOUSE_BUTTON_LEFT:
 				print("OPEN")
 				OS.shell_open(app_path)
+			if event.button_mask == MOUSE_BUTTON_RIGHT:
+				right_click.position = event.global_position - Vector2(10.0, 10.0)
+				right_click.show()
+
+
+
+func _on_right_click_mouse_exited() -> void:
+	right_click.hide()
