@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh20pin180h43"]
+[gd_scene load_steps=6 format=3 uid="uid://bh20pin180h43"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_4nrkt"]
 [ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://icons/98314ec40dc36aeb701e872e809140c2.png" id="2_5bwjf"]
@@ -11,26 +11,44 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohv6s"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
 [node name="Game" type="Control"]
-clip_contents = true
+custom_minimum_size = Vector2(108, 144)
 layout_mode = 3
-anchor_right = 0.111
-anchor_bottom = 0.301
-offset_right = -19.872
-offset_bottom = -51.048
+anchor_right = 0.094
+anchor_bottom = 0.222
+offset_right = -0.288002
+offset_bottom = 0.143982
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_4nrkt")
 
 [node name="Art" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 2
-size_flags_vertical = 2
+mouse_filter = 0
 texture = ExtResource("2_5bwjf")
 expand_mode = 1
 
@@ -52,6 +70,16 @@ grow_vertical = 2
 text = "Notepad"
 label_settings = SubResource("LabelSettings_bm7tp")
 horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ohv6s")
 
 [connection signal="gui_input" from="Art" to="." method="_on_game_gui_input"]
 [connection signal="mouse_entered" from="Art" to="." method="_on_game_mouse_entered"]

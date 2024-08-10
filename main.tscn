@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drh8kouv1u8pj"]
+[gd_scene load_steps=3 format=3 uid="uid://drh8kouv1u8pj"]
 
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
+[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://icons/98314ec40dc36aeb701e872e809140c2.png" id="2_y4bsv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -37,4 +38,5 @@ theme_override_constants/separation = 70
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_name = "Notepad"
+app_name = "Risk of Rain 2"
+app_icon = ExtResource("2_y4bsv")

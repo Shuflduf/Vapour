@@ -5,13 +5,13 @@ extends Control
 @export var app_icon: Texture2D
 
 @onready var label: Control = %Label
-@onready var icon: TextureRect = $Game
+@onready var icon: TextureRect = %Art
 
 var tween: Tween
-const pic_size = 144
+const pic_size = 128
 
 func _ready() -> void:
-	icon.texture = app_icon
+	#icon.texture = app_icon
 	label.text = app_name
 
 func tween_label(out: bool):
