@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drh8kouv1u8pj"]
+[gd_scene load_steps=4 format=3 uid="uid://drh8kouv1u8pj"]
 
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
-[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://icons/98314ec40dc36aeb701e872e809140c2.png" id="2_y4bsv"]
+[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://assets/98314ec40dc36aeb701e872e809140c2.png" id="2_y4bsv"]
+[ext_resource type="Texture2D" uid="uid://dlorxmrkudnmn" path="res://assets/MV5BNDBkNjEzYjktMWUwMC00MTcwLWEyNDEtODI1MTU1MDc5MTE0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg" id="3_imqmg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -32,7 +33,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme_override_constants/separation = 70
+theme_override_constants/separation = 15
 
 [node name="Game" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
@@ -41,3 +42,11 @@ app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad
 app_name = "Risk of Rain 2"
 app_icon = ExtResource("2_y4bsv")
 border_colour = Color(0.00392157, 0.0470588, 0.12549, 1)
+
+[node name="Game2" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+layout_mode = 2
+size_flags_vertical = 3
+app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
+app_name = "Risk of Rain 2"
+app_icon = ExtResource("3_imqmg")
+border_colour = Color(0.14902, 0.0196078, 0.188235, 1)

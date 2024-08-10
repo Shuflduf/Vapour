@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh20pin180h43"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_4nrkt"]
-[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://icons/98314ec40dc36aeb701e872e809140c2.png" id="2_5bwjf"]
+[ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_jeach"]
 [ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_8xk8t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bm7tp"]
@@ -49,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-texture = ExtResource("2_5bwjf")
+texture = ExtResource("1_jeach")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Art"]

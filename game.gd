@@ -1,9 +1,15 @@
+@tool
 extends Control
 
 @export var app_path: String
 @export var app_name: String
 @export var app_icon: Texture2D
-@export_color_no_alpha var border_colour: Color
+@export_color_no_alpha var border_colour: Color:
+	set(value):
+		border_colour = value
+		var styleBox: StyleBoxFlat = outline.get_theme_stylebox("panel").duplicate()
+		styleBox.set("border_color", value)
+		outline.add_theme_stylebox_override("panel", styleBox)
 
 
 @onready var label: Control = %Label
@@ -14,11 +20,12 @@ extends Control
 var tween: Tween
 const pic_size = 128
 
+#func set_colour()
+
+
 func _ready() -> void:
 	icon.texture = app_icon
-	var styleBox: StyleBoxFlat = outline.get_theme_stylebox("panel").duplicate()
-	styleBox.set("border_color", border_colour)
-	outline.add_theme_stylebox_override("panel", styleBox)
+
 	label.text = app_name
 
 func tween_label(out: bool):
