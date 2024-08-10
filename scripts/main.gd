@@ -6,7 +6,7 @@ extends HSplitContainer
 
 func _ready() -> void:
 	load_games()
-	save_games()
+	#save_games()
 
 func _on_new_game_pressed() -> void:
 	var new_entry = new_game.instantiate()
@@ -39,7 +39,8 @@ func load_games():
 		# Check if there is any error while parsing the JSON string, skip in case of failure
 		var parse_result = json.parse(json_string)
 		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			print("JSON Parse Error: ", json.get_error_message(),\
+					 " in ", json_string, " at line ", json.get_error_line())
 			continue
 
 		# Get the data from the JSON object
@@ -51,10 +52,8 @@ func load_games():
 
 
 		for i in node_data.keys():
-			print("AH")
 			if i == "border_colour":
 				new_object.set(i, str_to_var(node_data[i]))
-				#continue
 			else:
 				new_object.set(i, node_data[i])
 
