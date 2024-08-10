@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqh1b5ly2r5p1"
-path="res://.godot/imported/Notepad.png-bd07bd38064a4d020f3e521f994706e1.ctex"
+uid="uid://cv62b2wa07tky"
+path="res://.godot/imported/ror2.png-3b1fb676c188155c9bab926033eecd6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Notepad.png"
-dest_files=["res://.godot/imported/Notepad.png-bd07bd38064a4d020f3e521f994706e1.ctex"]
+source_file="res://assets/ror2.png"
+dest_files=["res://.godot/imported/ror2.png-3b1fb676c188155c9bab926033eecd6b.ctex"]
 
 [params]
 

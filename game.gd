@@ -2,10 +2,17 @@
 extends Control
 
 @export var app_path: String
-@export var app_name: String
-@export var app_icon: Texture2D
+@export var app_icon: Texture2D:
+	set(value):
+		if icon == null:
+			await ready
+		app_icon = value
+		icon.texture = value
+
 @export_color_no_alpha var border_colour: Color:
 	set(value):
+		if outline == null:
+			await ready
 		border_colour = value
 		var styleBox: StyleBoxFlat = outline.get_theme_stylebox("panel").duplicate()
 		styleBox.set("border_color", value)
@@ -16,17 +23,23 @@ extends Control
 @onready var icon: TextureRect = %Art
 @onready var outline: Panel = %Panel
 
+var selected = false:
+	set(value):
+		selected = value
+		if outline == null:
+			await ready
+		var styleBox: StyleBoxFlat = outline.get_theme_stylebox("panel").duplicate()
+		styleBox.set("draw_center", value)
+		outline.add_theme_stylebox_override("panel", styleBox)
 
 var tween: Tween
-const pic_size = 128
 
-#func set_colour()
+const pic_size = 128
 
 
 func _ready() -> void:
-	icon.texture = app_icon
-
-	label.text = app_name
+	label.position.x = 0
+	label.text = name
 
 func tween_label(out: bool):
 	if tween:
@@ -41,10 +54,12 @@ func tween_label(out: bool):
 
 
 func _on_game_mouse_entered() -> void:
+	selected = true
 	tween_label(true)
 
 
 func _on_game_mouse_exited() -> void:
+	selected = false
 	tween_label(false)
 
 
