@@ -40,3 +40,4 @@ size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
 app_name = "Risk of Rain 2"
 app_icon = ExtResource("2_y4bsv")
+border_colour = Color(0.00392157, 0.0470588, 0.12549, 1)
