@@ -1,4 +1,5 @@
 @tool
+class_name GameEntry
 extends Control
 
 @export var app_path: String

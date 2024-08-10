@@ -44,8 +44,10 @@ text = "Name"
 label_settings = ExtResource("2_d7hl2")
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/Name"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_n2nfl")
@@ -82,6 +84,31 @@ access = 2
 filters = PackedStringArray("*.tga", "*.png", "*.jpg", "*.ktx", "*.webp")
 show_hidden_files = true
 
+[node name="Colour" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Colour"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "canadian"
+text = "Colour"
+label_settings = ExtResource("2_d7hl2")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer/Colour"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "                      "
+edit_alpha = false
+
+[node name="Finish" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_n2nfl")
+text = "Finish"
+
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 35
@@ -92,5 +119,8 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 
 [connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Image/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Image/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="color_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Colour/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Finish" to="." method="_on_finish_pressed"]

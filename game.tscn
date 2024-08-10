@@ -22,6 +22,7 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [node name="Game" type="Control"]
+z_index = 5
 custom_minimum_size = Vector2(108, 144)
 layout_mode = 3
 anchor_right = 0.094
@@ -47,7 +48,7 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="Art"]
 unique_name_in_owner = true
-z_index = -10
+z_index = -1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
