@@ -6,10 +6,15 @@ extends Control
 @onready var backround_colour: Panel = $BackroundColour
 @onready var current_description: RichTextLabel = $CurrentDescription
 
+func reset_main():
+	if games.get_child_count() > 0:
+		change_backround_colour(0)
+		set_description(0)
+
 func _ready() -> void:
 	load_games()
 	await get_tree().process_frame
-	change_backround_colour(0)
+	reset_main()
 
 func _on_new_game_pressed() -> void:
 	var new_entry = new_game.instantiate()
@@ -80,27 +85,40 @@ func load_games():
 	call_deferred("connect_all_children")
 
 func change_backround_colour(new_colour_index: int):
+	print(new_colour_index)
+	if games.get_child_count() - 1 < new_colour_index:
+		return
+	if games.get_child(new_colour_index) == null:
+		return
+	if get_tree() == null:
+		return
+
+
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(backround_colour, "modulate"\
 			, games.get_child(new_colour_index).border_colour, 0.3)
 
 func set_description(index: int):
-	current_description.text = games.get_child(index).description.text
+	if current_description.text:
+		current_description.text = games.get_child(index).description.text
 
 
 func connect_all_children():
 	for i in games.get_children().size():
 
 		if !games.get_children()[i].get_signal_connection_list("tree_exited"):
-			games.get_children()[i].tree_exited.connect(save_games)
+			games.get_children()[i].tree_exited.connect(func():
+
+				save_games()
+				reset_main()
+				connect_all_children())
 
 		if !games.get_children()[i].get_signal_connection_list("description_edited"):
 			games.get_children()[i].description_edited.connect(save_games)
 
-		if !games.get_children()[i].get_signal_connection_list("hovered"):
-			games.get_children()[i].hovered.connect(func():
-					set_description(i)
-					change_backround_colour(i))
+		if games.get_children()[i].get_signal_connection_list("hovered"):
+			games.get_children()[i].disconnect("hovered", hovered)
+		games.get_children()[i].hovered.connect(hovered.bind(i))
 
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()
@@ -115,3 +133,7 @@ func connect_all_children():
 			new_entry.update_from_game()
 			new_entry.added_game.connect(func(g: GameEntry):
 				edit_game(g, i)))
+
+func hovered(i: int):
+	set_description(i)
+	change_backround_colour(i)
