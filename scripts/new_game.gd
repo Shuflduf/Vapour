@@ -10,7 +10,7 @@ signal added_game(game: GameEntry)
 @onready var game: GameEntry = %Game
 
 func update_from_game():
-	%LineEdit.text = game.app_path
+	%LineEdit.text = game.name
 	%ColorPickerButton.color = game.border_colour
 
 func _on_line_edit_text_changed(new_text: String) -> void:

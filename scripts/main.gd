@@ -19,8 +19,10 @@ func add_game(new_entry: GameEntry):
 	load_games()
 
 func edit_game(new_entry: GameEntry, index):
+	print(games.get_child(index))
+	games.get_child(index).free()
 	new_entry.reparent(games)
-	games.move_child(new_entry, index)
+	games.move_child(games.get_child(-1), index)
 	save_games()
 	load_games()
 	#games.get_child(index) = new_entry
@@ -60,11 +62,11 @@ func load_games():
 		# Firstly, we need to create the object and add it to the tree and set its position.
 		var new_object = game_entry.instantiate()
 
-
-
 		for i in node_data.keys():
 			if i == "border_colour":
 				new_object.set(i, str_to_var(node_data[i]))
+			if i == "name":
+				new_object.name = node_data[i]
 			else:
 				new_object.set(i, node_data[i])
 
@@ -78,7 +80,9 @@ func load_games():
 			var new_entry = new_game.instantiate()
 			add_child(new_entry)
 			new_entry.game.queue_free()
-			new_entry.h_box.add_child(games.get_children()[i - 1].duplicate())
+			new_entry.h_box.add_child(games.get_children()[i - 1].duplicate(), true)
+			new_entry.game = new_entry.h_box.get_child(-1)
 			new_entry.update_from_game()
-			new_entry.added_game.connect(add_game.bind(i)))
+			new_entry.added_game.connect(func(g: GameEntry):
+				edit_game(g, i - 1)))
 

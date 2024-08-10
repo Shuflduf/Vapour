@@ -36,7 +36,7 @@ func save_dict() -> Dictionary:
 		"app_path" : app_path,
 		"app_icon" : app_icon,
 		"name" : name,
-		"border_colour" : var_to_str(border_colour),
+		"border_colour" : var_to_str(border_colour * Color(1.0, 1.0, 1.0, 1.0)),
 	}
 
 
