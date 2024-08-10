@@ -76,7 +76,8 @@ func load_games():
 func connect_all_children():
 	for i in games.get_children().size():
 
-		games.get_children()[i].tree_exited.connect(save_games)
+		if !games.get_children()[i].get_signal_connection_list("tree_exited"):
+			games.get_children()[i].tree_exited.connect(save_games)
 
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()
