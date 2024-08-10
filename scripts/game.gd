@@ -2,7 +2,7 @@
 class_name GameEntry
 extends Control
 
-@export var app_path: String
+@export_global_file("*.exe") var app_path: String
 @export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga") var app_icon: String:
 	set(value):
 		if icon == null:
@@ -33,7 +33,7 @@ func save_dict() -> Dictionary:
 		"app_path" : app_path,
 		"app_icon" : app_icon,
 		"name" : name,
-		"border_colour" : border_colour,
+		"border_colour" : var_to_str(border_colour),
 	}
 
 

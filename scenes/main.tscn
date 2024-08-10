@@ -55,4 +55,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_constants/separation = 15
 
+[node name="Game" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
+layout_mode = 2
+app_path = "C:/Users/Computer/Documents/Godot/Vapour/testingexe.exe"
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/godot.jpg"
+border_colour = Color(1, 0, 0, 1)
+
 [connection signal="pressed" from="Buttons/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

@@ -6,6 +6,7 @@ extends HSplitContainer
 
 func _ready() -> void:
 	load_games()
+	save_games()
 
 func _on_new_game_pressed() -> void:
 	var new_entry = new_game.instantiate()
@@ -14,6 +15,7 @@ func _on_new_game_pressed() -> void:
 
 func add_game(new_entry: GameEntry):
 	new_entry.reparent(games)
+	save_games()
 
 func save_games():
 	var save_file = FileAccess.open("user://games.json", FileAccess.WRITE)
@@ -45,10 +47,18 @@ func load_games():
 
 		# Firstly, we need to create the object and add it to the tree and set its position.
 		var new_object = game_entry.instantiate()
-		for i in node_data.keys():
-			new_object.set(i, node_data[i])
 
-		games.add_child(new_object)
+
+
+		for i in node_data.keys():
+			print("AH")
+			if i == "border_colour":
+				new_object.set(i, str_to_var(node_data[i]))
+				#continue
+			else:
+				new_object.set(i, node_data[i])
+
+		games.add_child(new_object, true)
 
 		# Now we set the remaining variables.
 
