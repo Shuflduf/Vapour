@@ -28,6 +28,14 @@ var tween: Tween
 
 const pic_size = 128
 
+func save_dict() -> Dictionary:
+	return {
+		"app_path" : app_path,
+		"app_icon" : app_icon,
+		"name" : name,
+		"border_colour" : border_colour,
+	}
+
 
 func _ready() -> void:
 	label.position.x = 0

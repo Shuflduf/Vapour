@@ -14,6 +14,7 @@ grow_vertical = 2
 collapsed = true
 script = ExtResource("1_vgx7c")
 new_game = ExtResource("1_l6jh3")
+game_entry = ExtResource("1_nhxs7")
 
 [node name="Buttons" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -53,40 +54,5 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_constants/separation = 15
-
-[node name="Risk of Rain 2" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
-layout_mode = 2
-size_flags_vertical = 3
-app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/ror2.png"
-border_colour = Color(0.00392157, 0.0470588, 0.12549, 1)
-
-[node name="Oneshot" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
-layout_mode = 2
-size_flags_vertical = 3
-app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/oneshot.jpg"
-border_colour = Color(0.14902, 0.0196078, 0.188235, 1)
-
-[node name="Godot Engine" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
-layout_mode = 2
-size_flags_vertical = 3
-app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/godot.jpg"
-border_colour = Color(0.196078, 0.639216, 0.847059, 1)
-
-[node name="Celeste" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
-layout_mode = 2
-size_flags_vertical = 3
-app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/celeste.png"
-border_colour = Color(0.196078, 0.0313726, 0.254902, 1)
-
-[node name="Rivals of Aether" parent="MarginContainer/ScrollContainer/Games" instance=ExtResource("1_nhxs7")]
-layout_mode = 2
-size_flags_vertical = 3
-app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/rivals.webp"
-border_colour = Color(0.427451, 0.541176, 0.654902, 1)
 
 [connection signal="pressed" from="Buttons/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
