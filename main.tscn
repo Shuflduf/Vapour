@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://drh8kouv1u8pj"]
+[gd_scene load_steps=5 format=3 uid="uid://drh8kouv1u8pj"]
 
 [ext_resource type="PackedScene" uid="uid://de7kka5kj7f7m" path="res://new_game.tscn" id="1_l6jh3"]
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
 [ext_resource type="Script" path="res://main.gd" id="1_vgx7c"]
+[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_k3vr8"]
 
 [node name="Main" type="HSplitContainer"]
 anchors_preset = 15
@@ -27,6 +28,9 @@ theme_override_constants/separation = 15
 
 [node name="NewGame" type="Button" parent="Buttons/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_k3vr8")
 text = "Add New Game"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

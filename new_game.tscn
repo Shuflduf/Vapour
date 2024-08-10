@@ -7,11 +7,11 @@
 
 [sub_resource type="Theme" id="Theme_u256b"]
 
-[node name="NewGame" type="PopupPanel"]
+[node name="NewGame" type="Window"]
 title = "Add New Game"
-position = Vector2i(135, 130)
-size = Vector2i(509, 212)
-visible = true
+initial_position = 1
+size = Vector2i(509, 239)
+unresizable = true
 keep_title_visible = true
 script = ExtResource("1_t6qci")
 
@@ -19,7 +19,7 @@ script = ExtResource("1_t6qci")
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 505.0
-offset_bottom = 208.0
+offset_bottom = 235.0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
@@ -54,6 +54,36 @@ theme_override_fonts/font = ExtResource("3_n2nfl")
 placeholder_text = "Name"
 alignment = 1
 
+[node name="Path" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Path"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path"
+label_settings = ExtResource("2_d7hl2")
+
+[node name="PathButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Path"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_n2nfl")
+text = "Select"
+
+[node name="PathFileDialog" type="FileDialog" parent="MarginContainer/HBoxContainer/VBoxContainer/Path"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 1
+size = Vector2i(807, 429)
+theme = SubResource("Theme_u256b")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.exe")
+show_hidden_files = true
+
 [node name="Image" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -64,7 +94,7 @@ size_flags_horizontal = 3
 text = "Image"
 label_settings = ExtResource("2_d7hl2")
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
+[node name="ImageButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -72,7 +102,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_n2nfl")
 text = "Select"
 
-[node name="FileDialog" type="FileDialog" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
+[node name="ImageFileDialog" type="FileDialog" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
 unique_name_in_owner = true
 title = "Open a File"
 initial_position = 1
@@ -114,13 +144,17 @@ layout_mode = 2
 theme_override_constants/separation = 35
 
 [node name="Game" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_bt0ns")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Image/Button" to="." method="_on_button_pressed"]
-[connection signal="file_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Image/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Path/PathButton" to="." method="_on_path_button_pressed"]
+[connection signal="file_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Path/PathFileDialog" to="." method="_on_path_file_dialog_file_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Image/ImageButton" to="." method="_on_image_button_pressed"]
+[connection signal="file_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Image/ImageFileDialog" to="." method="_on_image_file_dialog_file_selected"]
 [connection signal="color_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Colour/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Finish" to="." method="_on_finish_pressed"]
