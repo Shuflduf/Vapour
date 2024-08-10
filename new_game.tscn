@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://de7kka5kj7f7m"]
+
+[ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_bt0ns"]
+[ext_resource type="Script" path="res://new_game.gd" id="1_t6qci"]
+[ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://main_label.tres" id="2_d7hl2"]
+[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_n2nfl"]
+
+[sub_resource type="Theme" id="Theme_u256b"]
+
+[node name="NewGame" type="PopupPanel"]
+title = "Add New Game"
+position = Vector2i(135, 130)
+size = Vector2i(509, 212)
+visible = true
+keep_title_visible = true
+script = ExtResource("1_t6qci")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 505.0
+offset_bottom = 208.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+label_settings = ExtResource("2_d7hl2")
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_n2nfl")
+placeholder_text = "Name"
+alignment = 1
+
+[node name="Image" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Image"
+label_settings = ExtResource("2_d7hl2")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_n2nfl")
+text = "Select"
+
+[node name="FileDialog" type="FileDialog" parent="MarginContainer/HBoxContainer/VBoxContainer/Image"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 1
+size = Vector2i(807, 429)
+theme = SubResource("Theme_u256b")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.tga", "*.png", "*.jpg", "*.ktx", "*.webp")
+show_hidden_files = true
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Game" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_bt0ns")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Image/Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="MarginContainer/HBoxContainer/VBoxContainer/Image/FileDialog" to="." method="_on_file_dialog_file_selected"]

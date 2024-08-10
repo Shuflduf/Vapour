@@ -1,15 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh20pin180h43"]
+[gd_scene load_steps=5 format=3 uid="uid://bh20pin180h43"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_4nrkt"]
 [ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_jeach"]
-[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_8xk8t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bm7tp"]
-font = ExtResource("3_8xk8t")
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://main_label.tres" id="3_qx0dg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohv6s"]
 bg_color = Color(0.83, 0.617105, 0.1577, 0.184314)
@@ -68,7 +61,7 @@ offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Notepad"
-label_settings = SubResource("LabelSettings_bm7tp")
+label_settings = ExtResource("3_qx0dg")
 vertical_alignment = 1
 autowrap_mode = 3
 

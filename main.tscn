@@ -1,75 +1,84 @@
-[gd_scene load_steps=7 format=3 uid="uid://drh8kouv1u8pj"]
+[gd_scene load_steps=3 format=3 uid="uid://drh8kouv1u8pj"]
 
+[ext_resource type="PackedScene" uid="uid://de7kka5kj7f7m" path="res://new_game.tscn" id="1_l6jh3"]
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://game.tscn" id="1_nhxs7"]
-[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://assets/ror2.png" id="2_y4bsv"]
-[ext_resource type="Texture2D" uid="uid://dlorxmrkudnmn" path="res://assets/oneshot.jpg" id="3_imqmg"]
-[ext_resource type="Texture2D" uid="uid://d206wjn3bnwct" path="res://assets/godot.jpg" id="4_knc5i"]
-[ext_resource type="Texture2D" uid="uid://c8ooi8mt48knp" path="res://assets/celeste.png" id="5_ye7t2"]
-[ext_resource type="Texture2D" uid="uid://cqys7sjycbi1m" path="res://assets/rivals.webp" id="6_tpae5"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
+[node name="HSplitContainer" type="HSplitContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+collapsed = true
 
-[node name="addthissomewhere" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="."]
 layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="NewGame" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Add New Game"
+
+[node name="NewGame" parent="Buttons/VBoxContainer/NewGame" instance=ExtResource("1_l6jh3")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="addthissomewhere"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 clip_contents = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="addthissomewhere/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_constants/separation = 15
 
-[node name="Risk of Rain 2" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+[node name="Risk of Rain 2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = ExtResource("2_y4bsv")
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/ror2.png"
 border_colour = Color(0.00392157, 0.0470588, 0.12549, 1)
 
-[node name="Oneshot" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+[node name="Oneshot" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = ExtResource("3_imqmg")
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/oneshot.jpg"
 border_colour = Color(0.14902, 0.0196078, 0.188235, 1)
 
-[node name="Godot Engine" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+[node name="Godot Engine" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = ExtResource("4_knc5i")
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/godot.jpg"
 border_colour = Color(0.196078, 0.639216, 0.847059, 1)
 
-[node name="Celeste" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+[node name="Celeste" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = ExtResource("5_ye7t2")
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/celeste.png"
 border_colour = Color(0.196078, 0.0313726, 0.254902, 1)
 
-[node name="Rivals of Aether" parent="addthissomewhere/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
+[node name="Rivals of Aether" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_nhxs7")]
 layout_mode = 2
 size_flags_vertical = 3
 app_path = "C:\\Users\\Computer\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
-app_icon = ExtResource("6_tpae5")
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/assets/rivals.webp"
 border_colour = Color(0.427451, 0.541176, 0.654902, 1)

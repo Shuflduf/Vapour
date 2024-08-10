@@ -2,12 +2,12 @@
 extends Control
 
 @export var app_path: String
-@export var app_icon: Texture2D:
+@export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga") var app_icon: String:
 	set(value):
 		if icon == null:
 			await ready
 		app_icon = value
-		icon.texture = value
+		icon.texture = ImageTexture.create_from_image(Image.load_from_file(value))
 
 @export_color_no_alpha var border_colour: Color:
 	set(value):
