@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bh20pin180h43" path="res://scenes/game.tscn" id="1_bt0ns"]
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_t6qci"]
 [ext_resource type="LabelSettings" uid="uid://gkveuu0u01ww" path="res://assets/main_label.tres" id="2_5t7q3"]
-[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://assets/Poppins-Bold.ttf" id="3_n2nfl"]
+[ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://assets/fonts/Normal.ttf" id="3_n2nfl"]
 
 [sub_resource type="Theme" id="Theme_u256b"]
 
@@ -111,7 +111,7 @@ theme = SubResource("Theme_u256b")
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.tga", "*.png", "*.jpg", "*.ktx", "*.webp")
+filters = PackedStringArray("*.tga", "*.png", "*.jpg", "*.ktx", "*.webp", "*.svg")
 show_hidden_files = true
 
 [node name="Colour" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -129,7 +129,6 @@ label_settings = ExtResource("2_5t7q3")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "                      "
 edit_alpha = false
 
 [node name="Finish" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -142,13 +141,16 @@ text = "Finish"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 35
+size_flags_horizontal = 8
+theme_override_constants/separation = 40
 
 [node name="Game" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_bt0ns")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+app_path = "C:/Users/Computer/Documents/Godot/Vapour/testingexe.exe"
+app_icon = "C:/Users/Computer/Documents/Godot/Vapour/icon.svg"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_changed"]

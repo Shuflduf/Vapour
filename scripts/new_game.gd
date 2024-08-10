@@ -14,8 +14,12 @@ func update_from_game():
 	%ColorPickerButton.color = game.border_colour
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	game.name = new_text
-	game.label.text = new_text
+	if new_text.is_empty():
+		game.name = "Game"
+		game.label.text = game.name
+	else:
+		game.name = new_text
+		game.label.text = new_text
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
@@ -43,7 +47,6 @@ func _on_path_button_pressed() -> void:
 
 
 func _on_path_file_dialog_file_selected(path: String) -> void:
-	print(path)
 	game.app_path = path
 
 func _on_close_requested() -> void:

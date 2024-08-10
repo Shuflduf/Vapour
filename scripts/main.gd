@@ -4,9 +4,12 @@ extends Control
 @export var game_entry: PackedScene
 @onready var games: VBoxContainer = %Games
 @onready var backround_colour: Panel = $BackroundColour
+@onready var current_description: RichTextLabel = $CurrentDescription
 
 func _ready() -> void:
 	load_games()
+	await get_tree().process_frame
+	change_backround_colour(0)
 
 func _on_new_game_pressed() -> void:
 	var new_entry = new_game.instantiate()
@@ -58,7 +61,6 @@ func load_games():
 
 		# Get the data from the JSON object
 		var node_data = json.get_data()
-		print(node_data["name"])
 
 		# Firstly, we need to create the object and add it to the tree and set its position.
 		var new_object = game_entry.instantiate()
@@ -73,9 +75,13 @@ func load_games():
 
 	call_deferred("connect_all_children")
 
-func change_backround_colour(new_colour: Color):
+func change_backround_colour(new_colour_index: int):
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
-	tween.tween_property(backround_colour, "modulate", new_colour, 0.3)
+	tween.tween_property(backround_colour, "modulate"\
+			, games.get_child(new_colour_index).border_colour, 0.3)
+
+func set_description(index: int):
+	current_description.text = games.get_child(index).description.text
 
 
 func connect_all_children():
@@ -85,14 +91,20 @@ func connect_all_children():
 			games.get_children()[i].tree_exited.connect(save_games)
 
 		if !games.get_children()[i].get_signal_connection_list("hovered"):
-			games.get_children()[i].hovered.connect(change_backround_colour)
+			games.get_children()[i].hovered.connect(func():
+				set_description(i)
+				change_backround_colour(i))
 
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()
 			add_child(new_entry)
+			new_entry.title = "Edit Game"
 			new_entry.game.queue_free()
 			new_entry.h_box.add_child(games.get_children()[i].duplicate(), true)
 			new_entry.game = new_entry.h_box.get_child(-1)
+			new_entry.game.size_flags_horizontal = SIZE_SHRINK_BEGIN
+			new_entry.game.size_flags_horizontal = SIZE_EXPAND
+			new_entry.game.size_flags_vertical = SIZE_SHRINK_CENTER
 			new_entry.update_from_game()
 			new_entry.added_game.connect(func(g: GameEntry):
 				edit_game(g, i)))

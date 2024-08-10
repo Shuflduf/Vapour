@@ -3,10 +3,10 @@ class_name GameEntry
 extends Control
 
 signal edited
-signal hovered(colour: Color)
+signal hovered
 
 @export_global_file("*.exe") var app_path: String
-@export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga") var app_icon: String:
+@export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga", "*.svg") var app_icon: String:
 	set(value):
 		if icon == null:
 			await ready
@@ -27,6 +27,7 @@ signal hovered(colour: Color)
 @onready var icon: TextureRect = %Art
 @onready var outline: Panel = %Panel
 @onready var right_click: PopupMenu = %RightClick
+@onready var description: Window = $Description
 
 var tween: Tween
 
@@ -46,6 +47,7 @@ func _ready() -> void:
 	label.text = name
 
 func tween_label(out: bool):
+
 	if tween:
 		await tween.finished
 
@@ -58,7 +60,7 @@ func tween_label(out: bool):
 
 
 func _on_game_mouse_entered() -> void:
-	hovered.emit(border_colour)
+	hovered.emit()
 	tween_label(true)
 
 
@@ -86,6 +88,8 @@ func _on_right_click_index_pressed(index: int) -> void:
 		0:
 			edited.emit()
 		1:
+			description.show()
+		2:
 			queue_free()
 
 
