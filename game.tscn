@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh20pin180h43"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_4nrkt"]
-[ext_resource type="Texture2D" uid="uid://cgeerywgvilq0" path="res://icon.svg" id="1_jeach"]
+[ext_resource type="Texture2D" uid="uid://cv62b2wa07tky" path="res://icons/98314ec40dc36aeb701e872e809140c2.png" id="2_5bwjf"]
 [ext_resource type="FontFile" uid="uid://cvbum3pxpeyyb" path="res://Poppins-Bold.ttf" id="3_8xk8t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bm7tp"]
@@ -11,29 +11,31 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="TextureRect"]
-anchors_preset = -1
+[node name="Game" type="Control"]
+clip_contents = true
+layout_mode = 3
 anchor_right = 0.111
-anchor_bottom = 0.198
-offset_right = 0.127991
-offset_bottom = -0.304016
+anchor_bottom = 0.301
+offset_right = -19.872
+offset_bottom = -51.048
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4nrkt")
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource("1_jeach")
-script = ExtResource("1_4nrkt")
+texture = ExtResource("2_5bwjf")
+expand_mode = 1
 
-[node name="LabelContainer" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1.52588e-05
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="LabelContainer"]
+[node name="Label" type="Label" parent="Art"]
+unique_name_in_owner = true
 z_index = -10
 layout_mode = 1
 anchors_preset = 8
@@ -47,8 +49,10 @@ offset_right = 54.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Godot Engine"
+text = "Notepad"
 label_settings = SubResource("LabelSettings_bm7tp")
+horizontal_alignment = 1
 
-[connection signal="mouse_entered" from="LabelContainer" to="." method="_on_label_container_mouse_entered"]
-[connection signal="mouse_exited" from="LabelContainer" to="." method="_on_label_container_mouse_exited"]
+[connection signal="gui_input" from="Art" to="." method="_on_game_gui_input"]
+[connection signal="mouse_entered" from="Art" to="." method="_on_game_mouse_entered"]
+[connection signal="mouse_exited" from="Art" to="." method="_on_game_mouse_exited"]

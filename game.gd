@@ -1,10 +1,18 @@
 extends Control
 
-@export var pic_size = 144
-@onready var label: Control = $LabelContainer/Label
+@export var app_path: String
+@export var app_name: String
+@export var app_icon: Texture2D
 
-var label_visible = false
+@onready var label: Control = %Label
+@onready var icon: TextureRect = $Game
+
 var tween: Tween
+const pic_size = 144
+
+func _ready() -> void:
+	icon.texture = app_icon
+	label.text = app_name
 
 func tween_label(out: bool):
 	if tween:
@@ -18,11 +26,17 @@ func tween_label(out: bool):
 		tween = null)
 
 
-func _on_label_container_mouse_entered() -> void:
-	label_visible = true
+func _on_game_mouse_entered() -> void:
 	tween_label(true)
 
 
-func _on_label_container_mouse_exited() -> void:
-	label_visible = false
+func _on_game_mouse_exited() -> void:
 	tween_label(false)
+
+
+func _on_game_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_mask == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				print("OPEN")
+				OS.shell_open(app_path)
