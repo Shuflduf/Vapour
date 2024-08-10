@@ -68,10 +68,14 @@ func load_games():
 		for i in node_data.keys():
 			if i == "border_colour":
 				new_object.set(i, str_to_var(node_data[i]))
+			elif i == "description:text":
+				pass
 			else:
 				new_object.set(i, node_data[i])
 
 		games.add_child(new_object, true)
+
+		new_object.description.text = node_data["description:text"]
 
 	call_deferred("connect_all_children")
 
@@ -90,10 +94,13 @@ func connect_all_children():
 		if !games.get_children()[i].get_signal_connection_list("tree_exited"):
 			games.get_children()[i].tree_exited.connect(save_games)
 
+		if !games.get_children()[i].get_signal_connection_list("description_edited"):
+			games.get_children()[i].description_edited.connect(save_games)
+
 		if !games.get_children()[i].get_signal_connection_list("hovered"):
 			games.get_children()[i].hovered.connect(func():
-				set_description(i)
-				change_backround_colour(i))
+					set_description(i)
+					change_backround_colour(i))
 
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()

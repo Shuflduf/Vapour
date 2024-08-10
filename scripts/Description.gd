@@ -1,11 +1,13 @@
 extends Window
 
+signal submitted
 @onready var textbox: TextEdit = $VBoxContainer/Textbox
 
 var text: String
 
 func _on_confirm_pressed() -> void:
 	text = textbox.text
+	submitted.emit()
 	hide()
 
 

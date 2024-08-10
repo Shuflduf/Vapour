@@ -4,6 +4,7 @@ extends Control
 
 signal edited
 signal hovered
+signal description_edited
 
 @export_global_file("*.exe") var app_path: String
 @export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga", "*.svg") var app_icon: String:
@@ -39,12 +40,15 @@ func save_dict() -> Dictionary:
 		"app_icon" : app_icon,
 		"name" : name,
 		"border_colour" : var_to_str(border_colour * Color(1.0, 1.0, 1.0, 1.0)),
+		"description:text" : description.text
 	}
 
 
 func _ready() -> void:
 	label.position.x = 0
 	label.text = name
+	description.submitted.connect(func():
+		description_edited.emit())
 
 func tween_label(out: bool):
 
@@ -89,6 +93,7 @@ func _on_right_click_index_pressed(index: int) -> void:
 			edited.emit()
 		1:
 			description.show()
+			description.textbox.text = description.text
 		2:
 			queue_free()
 
