@@ -46,6 +46,9 @@ func save_games():
 		save_file.store_line(JSON.stringify(game_data))
 
 func load_games():
+	if not FileAccess.file_exists("user://games.json"):
+		return
+
 	for game in games.get_children():
 		game.queue_free()
 
