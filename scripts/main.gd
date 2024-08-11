@@ -136,3 +136,7 @@ func connect_all_children():
 func hovered(i: int):
 	set_description(i)
 	change_backround_colour(i)
+
+
+func _on_current_description_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))
