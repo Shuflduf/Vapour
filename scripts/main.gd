@@ -138,6 +138,7 @@ func connect_all_children():
 			new_entry.game.size_flags_horizontal = SIZE_EXPAND
 			new_entry.game.size_flags_vertical = SIZE_SHRINK_CENTER
 			new_entry.game.display_only = true
+			new_entry.game.name = games.get_children()[i].name
 			new_entry.game.description.text = games.get_children()[i].description.text
 			new_entry.update_from_game()
 			new_entry.added_game.connect(func(g: GameEntry):
