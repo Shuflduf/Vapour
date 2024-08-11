@@ -31,6 +31,7 @@ func add_game(new_entry: GameEntry):
 func edit_game(new_entry: GameEntry, index):
 	games.get_child(index).free()
 	new_entry.reparent(games)
+	new_entry.display_only = false
 	games.move_child(games.get_child(-1), index)
 	save_games()
 	connect_all_children()
@@ -133,19 +134,19 @@ func connect_all_children():
 			new_entry.game.size_flags_horizontal = SIZE_SHRINK_BEGIN
 			new_entry.game.size_flags_horizontal = SIZE_EXPAND
 			new_entry.game.size_flags_vertical = SIZE_SHRINK_CENTER
+			new_entry.game.display_only = true
+			new_entry.game.description.text = games.get_children()[i].description.text
 			new_entry.update_from_game()
 			new_entry.added_game.connect(func(g: GameEntry):
 				edit_game(g, i)))
+
 
 func hovered(i: int):
 	set_description(i)
 	change_backround_colour(i)
 
 func move_game(up: bool, i: int):
-	@warning_ignore("unused_variable")
 	var new_index = i + (-1 if up else 1)
-
-	print(new_index)
 	games.move_child(games.get_child(i), new_index)
 	connect_all_children()
 	save_games()

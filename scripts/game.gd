@@ -24,6 +24,8 @@ signal moved(up: bool)
 		styleBox.set("border_color", value)
 		outline.add_theme_stylebox_override("panel", styleBox)
 
+@export var display_only = false
+
 
 @onready var label: Control = %Label
 @onready var icon: TextureRect = %Art
@@ -32,6 +34,7 @@ signal moved(up: bool)
 @onready var description: Window = $Description
 
 var tween: Tween
+
 
 const pic_size = 128
 
@@ -65,6 +68,7 @@ func tween_label(out: bool):
 
 
 func _on_game_mouse_entered() -> void:
+	print(description.text)
 	hovered.emit()
 	tween_label(true)
 
@@ -80,6 +84,8 @@ func _on_game_gui_input(event: InputEvent) -> void:
 				print("OPEN")
 				OS.shell_open(app_path)
 			if event.button_mask == MOUSE_BUTTON_RIGHT:
+				if display_only:
+					return
 				right_click.position = event.global_position - Vector2(10.0, 10.0)
 				right_click.show()
 
