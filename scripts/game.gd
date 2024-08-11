@@ -13,7 +13,12 @@ signal moved(up: bool)
 		if icon == null:
 			await ready
 		app_icon = value
-		icon.texture = ImageTexture.create_from_image(Image.load_from_file(value))
+		print(value)
+		if !ResourceLoader.exists(value):
+			app_icon = icondotsvg
+			icon.texture = load(icondotsvg)
+		else:
+			icon.texture = ImageTexture.create_from_image(Image.load_from_file(app_icon))
 
 @export_color_no_alpha var border_colour: Color:
 	set(value):
@@ -34,7 +39,7 @@ signal moved(up: bool)
 @onready var description: Window = $Description
 
 var tween: Tween
-
+const icondotsvg = "res://icon.svg"
 
 const pic_size = 128
 
