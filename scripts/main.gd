@@ -24,6 +24,7 @@ func _on_new_game_pressed() -> void:
 
 func add_game(new_entry: GameEntry):
 	new_entry.reparent(games)
+	new_entry.display_only = false
 	save_games()
 	connect_all_children()
 
