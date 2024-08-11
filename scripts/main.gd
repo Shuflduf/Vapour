@@ -119,6 +119,10 @@ func connect_all_children():
 			games.get_children()[i].disconnect("hovered", hovered)
 		games.get_children()[i].hovered.connect(hovered.bind(i))
 
+		if games.get_children()[i].get_signal_connection_list("moved"):
+			games.get_children()[i].disconnect("moved", move_game)
+		games.get_children()[i].moved.connect(move_game.bind(i))
+
 		games.get_children()[i].edited.connect(func():
 			var new_entry = new_game.instantiate()
 			add_child(new_entry)
@@ -137,6 +141,14 @@ func hovered(i: int):
 	set_description(i)
 	change_backround_colour(i)
 
+func move_game(up: bool, i: int):
+	@warning_ignore("unused_variable")
+	var new_index = i + (-1 if up else 1)
+
+	print(new_index)
+	games.move_child(games.get_child(i), new_index)
+	connect_all_children()
+	save_games()
 
 func _on_current_description_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))

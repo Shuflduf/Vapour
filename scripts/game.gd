@@ -5,6 +5,7 @@ extends Control
 signal edited
 signal hovered
 signal description_edited
+signal moved(up: bool)
 
 @export_global_file("*.exe") var app_path: String
 @export_global_file("*.png", "*.jpg", "*.ktx", "*.webp", "*.tga", "*.svg") var app_icon: String:
@@ -95,7 +96,12 @@ func _on_right_click_index_pressed(index: int) -> void:
 			description.show()
 			description.textbox.text = description.text
 		2:
+			moved.emit(true)
+		3:
+			moved.emit(false)
+		4:
 			queue_free()
+
 
 
 
