@@ -85,7 +85,6 @@ func load_games():
 	call_deferred("connect_all_children")
 
 func change_backround_colour(new_colour_index: int):
-	print(new_colour_index)
 	if games.get_child_count() - 1 < new_colour_index:
 		return
 	if games.get_child(new_colour_index) == null:
@@ -99,7 +98,7 @@ func change_backround_colour(new_colour_index: int):
 			, games.get_child(new_colour_index).border_colour, 0.3)
 
 func set_description(index: int):
-	if current_description.text:
+	if games.get_child(index).description.text:
 		current_description.text = games.get_child(index).description.text
 
 
