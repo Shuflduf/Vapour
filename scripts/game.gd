@@ -13,8 +13,9 @@ signal moved(up: bool)
 		if icon == null:
 			await ready
 		app_icon = value
-		print(value)
-		if !ResourceLoader.exists(value):
+		var dir_access = DirAccess.open("/")
+		if !dir_access.file_exists(value):
+			print("SMTH")
 			app_icon = icondotsvg
 			icon.texture = load(icondotsvg)
 		else:
